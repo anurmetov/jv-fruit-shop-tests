@@ -35,6 +35,8 @@ public class Main {
         final List<FruitTransaction> transactions =
                 dataConverter.convertToTransaction(inputReport);
 
+        System.out.println(transactions);
+
         Map<FruitTransaction.Operation, OperationHandler> operationHandlers = new HashMap<>();
         operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
         operationHandlers.put(FruitTransaction.Operation.PURCHASE, new PurchaseOperation());
