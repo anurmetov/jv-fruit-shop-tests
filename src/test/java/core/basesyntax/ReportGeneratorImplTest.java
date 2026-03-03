@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -51,11 +52,19 @@ public class ReportGeneratorImplTest {
 
 
     @Test
-    void generate_inputWithTwoFruitsNaturalOrder_Ok() {
+    void generate_inputWithTwoFruits_Ok() {
         exampleInput.put("apple", 5);
         exampleInput.put("banana", 15);
         String expected = EXPECTED_TITLE + "apple,5" + System.lineSeparator() + "banana,15";
         assertEquals(expected, reportGenerator.getReport(exampleInput));
+    }
+
+    @Test
+    void generate_OutputNotNaturalOrder_NotOk() {
+        exampleInput.put("apple", 5);
+        exampleInput.put("banana", 15);
+        String expectedFalse = EXPECTED_TITLE + "banana,15" + System.lineSeparator() + "apple,5";
+        assertNotEquals(expectedFalse, reportGenerator.getReport(exampleInput));
     }
 
 }
