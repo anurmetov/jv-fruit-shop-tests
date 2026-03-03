@@ -74,10 +74,9 @@ public class FruitTransaction {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof FruitTransaction)) {
+        if (!(o instanceof FruitTransaction that)) {
             return false;
         }
-        FruitTransaction that = (FruitTransaction) o;
         return quantity == that.quantity
                 && operation == that.operation
                 && Objects.equals(fruit, that.fruit);
@@ -86,16 +85,5 @@ public class FruitTransaction {
     @Override
     public int hashCode() {
         return Objects.hash(operation, fruit, quantity);
-    }
-
-    @Override
-    public String toString() {
-        return "\n"
-                + "FruitTransaction{"
-                + "operation=" + operation
-                + ", fruit='" + fruit
-                + '\''
-                + ", quantity=" + quantity
-                + '}';
     }
 }
