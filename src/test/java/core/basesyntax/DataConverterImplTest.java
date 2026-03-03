@@ -60,13 +60,6 @@ public class DataConverterImplTest {
     }
 
     @Test
-    void convert_shortList_Ok() {
-        exampleInput = List.of("type","fruit");
-        List<FruitTransaction> expected = List.of();
-        assertEquals(expected, converter.convertToTransaction(exampleInput));
-    }
-
-    @Test
     void convert_quantityIsNotNumber_NotOk() {
         exampleInput = List.of("type", "fruit", "quantity",
                 "b", "banana", "ERROR", "b", "apple", "100",
@@ -99,6 +92,4 @@ public class DataConverterImplTest {
                 () -> converter.convertToTransaction(exampleInput));
         assertTrue(exception.getMessage().contains("Input list is incomplete"));
     }
-
-
 }

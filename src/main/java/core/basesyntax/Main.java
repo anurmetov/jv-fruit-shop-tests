@@ -35,8 +35,6 @@ public class Main {
         final List<FruitTransaction> transactions =
                 dataConverter.convertToTransaction(inputReport);
 
-        System.out.println(transactions);
-
         Map<FruitTransaction.Operation, OperationHandler> operationHandlers = new HashMap<>();
         operationHandlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
         operationHandlers.put(FruitTransaction.Operation.PURCHASE, new PurchaseOperation());
@@ -48,7 +46,12 @@ public class Main {
         shopService.process(transactions);
 
         ReportGenerator reportGenerator = new ReportGeneratorImpl();
-        String resultingReport = reportGenerator.getReport(Storage.getAll());
+        Map<String, Integer> test = new HashMap<>();
+        test.put("apple",5);
+        String resultingReport = reportGenerator.getReport(test);
+
+        System.out.println(resultingReport);
+
 
         FileWriter fileWriter = new CsvWriterImpl();
         fileWriter.writeTo(resultingReport, "src/main/resources/finalReport.csv");

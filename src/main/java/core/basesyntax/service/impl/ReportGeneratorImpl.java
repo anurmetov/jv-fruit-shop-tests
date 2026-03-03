@@ -1,6 +1,8 @@
 package core.basesyntax.service.impl;
 
 import core.basesyntax.service.ReportGenerator;
+
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ReportGeneratorImpl implements ReportGenerator {
@@ -21,7 +23,9 @@ public class ReportGeneratorImpl implements ReportGenerator {
             return stringBuilder.toString();
         }
 
-        for (Map.Entry<String, Integer> entry : fruitData.entrySet()) {
+        LinkedHashMap<String, Integer> linkedMap = new LinkedHashMap<>(fruitData);
+
+        for (Map.Entry<String, Integer> entry : linkedMap.entrySet()) {
             stringBuilder
                     .append(entry.getKey())
                     .append(COMMA_DELIMITER)

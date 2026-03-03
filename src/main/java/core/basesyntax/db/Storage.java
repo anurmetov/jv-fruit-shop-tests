@@ -1,10 +1,11 @@
 package core.basesyntax.db;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Storage {
-    private static final Map<String, Integer> FRUIT_STORAGE = new HashMap<>();
+    private static final Map<String, Integer> FRUIT_STORAGE = new LinkedHashMap<>();
 
     public static void put(String fruit, int quantity) {
         FRUIT_STORAGE.put(fruit, quantity);
