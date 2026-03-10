@@ -21,15 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShopServiceImplTest {
     private static ShopService shopService;
-    private static Map<FruitTransaction.Operation, OperationHandler>
+    private static final Map<FruitTransaction.Operation, OperationHandler>
             operationHandler = new HashMap<>();
-    private static OperationStrategy operationStrategy;
-;
 
     @BeforeAll
     static void setUp() {
         operationHandler.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
-        operationStrategy = new OperationStrategyImpl(operationHandler);
+        OperationStrategy operationStrategy = new OperationStrategyImpl(operationHandler);
         shopService = new ShopServiceImpl(operationStrategy);
     }
 
