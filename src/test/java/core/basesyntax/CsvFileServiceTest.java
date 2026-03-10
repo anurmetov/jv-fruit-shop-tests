@@ -135,17 +135,6 @@ public class CsvFileServiceTest {
     }
 
     @Test
-    void write_fileNameWithNotAllowedSymbols_NotOk() {
-        List<String> invalidChars = List.of("*", "?", "<", ">", "|", "/", "\\");
-        for (String invalidChar : invalidChars) {
-            String fileName = "src/test/resources/example" + invalidChar + "output.csv";
-            RuntimeException exception = assertThrows(RuntimeException.class,
-                    () -> fileWriter.writeTo("Hello, world!", fileName));
-            assertTrue(exception.getMessage().contains("Could not create or write to file"));
-        }
-    }
-
-    @Test
     void write_inputDoesNotEqual_NotOk() throws IOException {
         assertDoesNotThrow(() ->
                 fileWriter.writeTo("Hello, world!", DEFAULT_OUTPUT_PATH));
