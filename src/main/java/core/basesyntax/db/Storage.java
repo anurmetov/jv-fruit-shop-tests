@@ -1,5 +1,7 @@
 package core.basesyntax.db;
 
+import core.basesyntax.model.FruitTransaction;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,5 +15,9 @@ public class Storage {
 
     public static Map<String, Integer> getAll() {
         return Map.copyOf(FRUIT_STORAGE);
+    }
+
+    public static void clear() {
+        FRUIT_STORAGE.clear();
     }
 }
