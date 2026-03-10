@@ -19,7 +19,8 @@ public class DataConverterImpl implements Converter {
         List<FruitTransaction> transactions = new ArrayList<>();
         try {
             if ((inputReport.size() - HEADER_OFFSET) % 3 != 0) {
-                throw new RuntimeException("Input list is incomplete. Expected multiples of 3 values per row");
+                throw new RuntimeException("Input list is incomplete. "
+                        + "Expected multiples of 3 values per row");
             }
             for (int i = HEADER_OFFSET; i < inputReport.size(); i += 3) {
                 String type = inputReport.get(i);

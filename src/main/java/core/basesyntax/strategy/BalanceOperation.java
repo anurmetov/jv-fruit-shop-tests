@@ -6,7 +6,7 @@ import core.basesyntax.model.FruitTransaction;
 public class BalanceOperation implements OperationHandler {
     @Override
     public void process(FruitTransaction fruitTransaction) {
-        canBeProcessed(fruitTransaction);
+        validateTransaction(fruitTransaction);
         Storage.put(fruitTransaction.getFruit(), fruitTransaction.getQuantity());
     }
 }

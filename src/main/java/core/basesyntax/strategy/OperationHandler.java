@@ -5,7 +5,7 @@ import core.basesyntax.model.FruitTransaction;
 public interface OperationHandler {
     void process(FruitTransaction fruitTransaction);
 
-    default void canBeProcessed(FruitTransaction fruitTransaction) {
+    default void validateTransaction(FruitTransaction fruitTransaction) {
         if (fruitTransaction == null) {
             throw new RuntimeException("Transaction cannot be null");
         }

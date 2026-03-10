@@ -1,15 +1,14 @@
 package core.basesyntax;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.strategy.BalanceOperation;
 import core.basesyntax.strategy.OperationHandler;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OperationalHandlerTest {
     private static OperationHandler operationHandler;
@@ -21,14 +20,14 @@ public class OperationalHandlerTest {
 
     @Test
     void validateTransaction_fruitTransactionValidData_Ok() {
-        assertDoesNotThrow(() -> operationHandler.canBeProcessed(
+        assertDoesNotThrow(() -> operationHandler.validateTransaction(
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, "banana", 20)));
     }
 
     @Test
     void validateTransaction_fruitTransactionIsNull_NotOk() {
         RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> operationHandler.canBeProcessed(null));
+                () -> operationHandler.validateTransaction(null));
         assertTrue(exception.getMessage().contains("Transaction cannot be null"));
     }
 
@@ -37,7 +36,7 @@ public class OperationalHandlerTest {
         FruitTransaction fruitTransaction =
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, null, 5);
         RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> operationHandler.canBeProcessed(fruitTransaction));
+                () -> operationHandler.validateTransaction(fruitTransaction));
         assertTrue(exception.getMessage().contains("Fruit cannot be null"));
     }
 
@@ -46,7 +45,7 @@ public class OperationalHandlerTest {
         FruitTransaction fruitTransaction =
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, "", 5);
         RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> operationHandler.canBeProcessed(fruitTransaction));
+                () -> operationHandler.validateTransaction(fruitTransaction));
         assertTrue(exception.getMessage().contains("Fruit cannot be empty"));
     }
 
@@ -55,7 +54,7 @@ public class OperationalHandlerTest {
         FruitTransaction fruitTransaction =
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, "banana", -5);
         RuntimeException exception = assertThrows(IllegalArgumentException.class,
-                () -> operationHandler.canBeProcessed(fruitTransaction));
+                () -> operationHandler.validateTransaction(fruitTransaction));
         assertTrue(exception.getMessage().contains("Quantity cannot be negative"));
     }
 }

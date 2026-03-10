@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.Converter;
 import core.basesyntax.service.FileReader;
@@ -51,7 +50,6 @@ public class Main {
         String resultingReport = reportGenerator.getReport(test);
 
         System.out.println(resultingReport);
-
 
         FileWriter fileWriter = new CsvWriterImpl();
         fileWriter.writeTo(resultingReport, "src/main/resources/finalReport.csv");

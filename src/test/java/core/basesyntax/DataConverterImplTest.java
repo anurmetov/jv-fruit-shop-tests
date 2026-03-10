@@ -1,23 +1,22 @@
 package core.basesyntax;
 
-import core.basesyntax.model.FruitTransaction;
-import core.basesyntax.service.Converter;
-import core.basesyntax.service.impl.DataConverterImpl;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import core.basesyntax.model.FruitTransaction;
+import core.basesyntax.service.Converter;
+import core.basesyntax.service.impl.DataConverterImpl;
+import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 public class DataConverterImplTest {
     private static Converter converter;
     private static List<FruitTransaction> exampleOutput;
     private static List<String> exampleInput;
-
 
     @BeforeAll
     static void setUp() {
@@ -67,7 +66,8 @@ public class DataConverterImplTest {
                 "r", "apple", "10", "p", "apple", "20",
                 "p", "banana", "5", "s", "banana", "50");
         RuntimeException exception =
-                assertThrows(RuntimeException.class, () -> converter.convertToTransaction(exampleInput));
+                assertThrows(RuntimeException.class,
+                        () -> converter.convertToTransaction(exampleInput));
         assertTrue(exception.getMessage().contains("Input file contains invalid quantity value"));
     }
 
@@ -81,7 +81,7 @@ public class DataConverterImplTest {
     @Test
     void convert_unknownOperationCode_notOk() {
         exampleInput = List.of("type", "fruit", "quantity", "x", "banana", "20");
-        RuntimeException exception = assertThrows(RuntimeException.class,
+        assertThrows(RuntimeException.class,
                 () -> converter.convertToTransaction(exampleInput));
     }
 

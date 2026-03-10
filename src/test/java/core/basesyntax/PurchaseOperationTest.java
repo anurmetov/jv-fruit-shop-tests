@@ -1,19 +1,17 @@
 package core.basesyntax;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.strategy.OperationHandler;
 import core.basesyntax.strategy.PurchaseOperation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PurchaseOperationTest {
 
@@ -24,8 +22,6 @@ public class PurchaseOperationTest {
      void afterEach() {
         Storage.clear();
     }
-
-
 
     @Test
     void process_validTransaction_Ok() {
@@ -49,7 +45,8 @@ public class PurchaseOperationTest {
         testTransaction =
                 new FruitTransaction(FruitTransaction.Operation.PURCHASE, "banana", 5);
         RuntimeException exception =
-                assertThrows(RuntimeException.class, () -> operationHandler.process(testTransaction));
+                assertThrows(RuntimeException.class,
+                        () -> operationHandler.process(testTransaction));
         assertTrue(exception.getMessage().contains("Not enough fruit in storage to sell"));
         assertNotEquals(-2, Storage.getAll().get("banana"));
     }

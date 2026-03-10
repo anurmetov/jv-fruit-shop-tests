@@ -1,19 +1,18 @@
 package core.basesyntax;
 
-import core.basesyntax.service.ReportGenerator;
-import core.basesyntax.service.impl.ReportGeneratorImpl;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import core.basesyntax.service.ReportGenerator;
+import core.basesyntax.service.impl.ReportGeneratorImpl;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class ReportGeneratorImplTest {
     private static ReportGenerator reportGenerator;
@@ -21,7 +20,7 @@ public class ReportGeneratorImplTest {
     private static Map<String, Integer> exampleInput;
 
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         reportGenerator = new ReportGeneratorImpl();
         exampleInput = new LinkedHashMap<>();
     }
@@ -33,9 +32,9 @@ public class ReportGeneratorImplTest {
 
     @Test
     void generate_inputMapIsNull_NotOk() {
-       RuntimeException exception = assertThrows(RuntimeException.class,
-               () -> reportGenerator.getReport(null));
-       assertTrue(exception.getMessage().contains("The fruit storage is null"));
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> reportGenerator.getReport(null));
+        assertTrue(exception.getMessage().contains("The fruit storage is null"));
     }
 
     @Test
@@ -49,7 +48,6 @@ public class ReportGeneratorImplTest {
         String expected = EXPECTED_TITLE + "apple,5";
         assertEquals(expected, reportGenerator.getReport(exampleInput));
     }
-
 
     @Test
     void generate_inputWithTwoFruits_Ok() {
