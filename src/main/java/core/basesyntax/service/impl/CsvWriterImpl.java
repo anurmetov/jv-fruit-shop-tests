@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class CsvWriterImpl implements FileWriter {
+    private static final String INVALID_FILENAME_CHARS = "[*?<>|]";
 
     @Override
     public void writeTo(String fromString, String toFilePath) {
@@ -20,6 +21,10 @@ public class CsvWriterImpl implements FileWriter {
             throw new
                     RuntimeException("The File Path that should be written to is empty: "
                     + toFilePath);
+        }
+
+        if (toFilePath.matches(".*" + INVALID_FILENAME_CHARS + ".*")) {
+            throw new RuntimeException("Could not create or write to file: " + toFilePath);
         }
 
         File csvOutputFile = new File(toFilePath);

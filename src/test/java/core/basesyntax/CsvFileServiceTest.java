@@ -136,7 +136,7 @@ public class CsvFileServiceTest {
 
     @Test
     void write_fileNameWithNotAllowedSymbols_NotOk() {
-        List<String> invalidChars = List.of("*", "?", "<", ">", "|");
+        List<String> invalidChars = List.of("*", "?", "<", ">", "|", "/", "\\");
         for (String invalidChar : invalidChars) {
             String fileName = "src/test/resources/example" + invalidChar + "output.csv";
             RuntimeException exception = assertThrows(RuntimeException.class,
