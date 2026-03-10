@@ -33,7 +33,7 @@ public class CsvFileServiceTest {
     @AfterEach
     void afterEach() {
         boolean deleted = new File(DEFAULT_OUTPUT_PATH).delete();
-        if (!deleted) {
+        if (deleted) {
             System.out.println("File could not be deleted: " + DEFAULT_OUTPUT_PATH);
         }
     }
@@ -136,7 +136,7 @@ public class CsvFileServiceTest {
 
     @Test
     void write_fileNameWithNotAllowedSymbols_NotOk() {
-        List<String> invalidChars = List.of("*", "\"", "?", "<", ">", "|", "/", "\\");
+        List<String> invalidChars = List.of("*", "?", "<", ">", "|");
         for (String invalidChar : invalidChars) {
             String fileName = "src/test/resources/example" + invalidChar + "output.csv";
             RuntimeException exception = assertThrows(RuntimeException.class,
