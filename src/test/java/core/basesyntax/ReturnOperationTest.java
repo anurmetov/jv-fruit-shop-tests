@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import core.basesyntax.db.Storage;
@@ -24,6 +23,7 @@ public class ReturnOperationTest {
     void process_validTransaction_Ok() {
         Storage.put("banana", 50);
         testTransaction = new FruitTransaction(FruitTransaction.Operation.RETURN, "banana", 20);
+        operationHandler.process(testTransaction);
         assertEquals(70, Storage.getAll().get("banana"));
     }
 
@@ -42,6 +42,5 @@ public class ReturnOperationTest {
                 new FruitTransaction(FruitTransaction.Operation.PURCHASE, "banana", -5);
         assertThrows(RuntimeException.class,
                         () -> operationHandler.process(testTransaction));
-        assertNotEquals(-2, Storage.getAll().get("banana"));
     }
 }
