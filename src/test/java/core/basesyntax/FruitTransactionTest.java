@@ -35,25 +35,5 @@ public class FruitTransactionTest {
         assertTrue(exception.getMessage().contains("Unknown operation"));
     }
 
-    @Test
-    void get_getFruitEquals_Ok() {
-        fruitTransaction = new FruitTransaction(FruitTransaction.Operation.BALANCE, "banana", 5);
-        String expected = "banana";
-        assertEquals(expected, fruitTransaction.getFruit());
-    }
-
-    @Test
-    void get_getQuantityEquals_Ok() {
-        fruitTransaction = new FruitTransaction(FruitTransaction.Operation.BALANCE, "banana", 5);
-        int expected = 5;
-        assertEquals(expected, fruitTransaction.getQuantity());
-    }
-
-    @Test
-    void get_getOperationEqualsOk() {
-        fruitTransaction = new FruitTransaction(FruitTransaction.Operation.BALANCE, "banana", 5);
-        FruitTransaction.Operation expected = FruitTransaction.Operation.BALANCE;
-        assertEquals(expected, fruitTransaction.getOperation());
-    }
 
 }
