@@ -1,12 +1,10 @@
-package core.basesyntax;
+package core.basesyntax.strategy;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import core.basesyntax.model.FruitTransaction;
-import core.basesyntax.strategy.BalanceOperation;
-import core.basesyntax.strategy.OperationHandler;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

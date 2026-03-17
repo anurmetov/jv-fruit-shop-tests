@@ -1,4 +1,4 @@
-package core.basesyntax;
+package core.basesyntax.service;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import core.basesyntax.service.FileReader;
-import core.basesyntax.service.FileWriter;
 import core.basesyntax.service.impl.CsvReaderImpl;
 import core.basesyntax.service.impl.CsvWriterImpl;
 import java.io.File;
@@ -33,9 +31,6 @@ public class CsvFileServiceTest {
     @AfterEach
     void afterEach() {
         boolean deleted = new File(DEFAULT_OUTPUT_PATH).delete();
-        if (deleted) {
-            System.out.println("File could not be deleted: " + DEFAULT_OUTPUT_PATH);
-        }
     }
 
     @Test
